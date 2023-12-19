@@ -19,7 +19,7 @@ system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 human_template = """
     Please, identify the main topics mentioned in these comments. 
 
-    Return a list of 10-20 topics. 
+    Return a list of 3 topics. 
     Output is a JSON list with the following format
     [
         {{"topic_name": "<topic1>", "topic_description": "<topic_description1>"}}, 
