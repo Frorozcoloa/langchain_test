@@ -45,7 +45,7 @@ def get_analysis_trends(list_text : list):
         try:
             topics_raw = llm_chain.run(text)
             topics_dict = json.loads(topics_raw.replace("```","").replace("json", ""))
-            values_to_return.append(topics_dict)
+            values_to_return += topics_dict
         except:
             continue
     return values_to_return
