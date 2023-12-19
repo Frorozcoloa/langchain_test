@@ -36,7 +36,7 @@ codegpt_api_key= os.getenv("CODEGPT_API_KEY")
 code_gpt_agent_id= os.getenv("CODEGPT_AGENT_ID")
 
 # Set API base URL
-codegpt_api_base = "https://api.codegpt.co/v1"
+codegpt_api_base = os.getenv("CODEGPT_API_BASE")
 
 # Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
 llm = ChatOpenAI(openai_api_key=codegpt_api_key,
