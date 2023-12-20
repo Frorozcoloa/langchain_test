@@ -3,7 +3,7 @@ import pandas as pd
 from typing import Dict, List
 
 
-def text2json(text:str)-> List[Dict]:
+def text2json(text: str) -> List[Dict]:
     """Converts a text to a json
 
     Args:
@@ -15,7 +15,8 @@ def text2json(text:str)-> List[Dict]:
     text = text.replace("```", "").replace("json", "")
     return json.loads(text)
 
-def save_csv(topics_raw: List[Dict], file_path:str)-> None:
+
+def save_csv(topics_raw: List[Dict], file_path: str) -> None:
     """Save topics in a csv file
 
     Args:

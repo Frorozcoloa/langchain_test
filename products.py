@@ -19,9 +19,7 @@ from utils import text2json, save_csv
 
 def get_tamplate() -> ChatPromptTemplate:
     """Returns a ChatPromptTemplate object with the following template:"""
-    template = (
-        "You are a helpful assistant. Your task is to analyze the products of an e-commerce."
-    )
+    template = "You are a helpful assistant. Your task is to analyze the products of an e-commerce."
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
     human_template = """
         Identify the primary subject discussed in the product description. Categorize the product and provide a portrayal of the target audience. 
@@ -43,7 +41,7 @@ def get_tamplate() -> ChatPromptTemplate:
     return chat_prompt
 
 
-def get_model()-> ChatOpenAI:
+def get_model() -> ChatOpenAI:
     """Returns a ChatOpenAI"""
     llm = ChatOpenAI(
         openai_api_key=codegpt_api_key,
@@ -51,9 +49,9 @@ def get_model()-> ChatOpenAI:
         model=code_gpt_agent_id,
     )
     return llm
-    
 
-def run(customer_reviews: str)->List[Dict]:
+
+def run(customer_reviews: str) -> List[Dict]:
     """Returns a list of topics, given a description of a product"""
     llm = get_model()
     chat_prompt = get_tamplate()
@@ -65,8 +63,8 @@ def run(customer_reviews: str)->List[Dict]:
 
 def example():
     """Example of use of the function get_topics"""
-    
-    description_product="""
+
+    description_product = """
                 Small 10-liter hiking backpack nh100 quechua black, BENEFITS
                 Carrying comfort, COMFORT CARRYING COMFORT Spalder and padded straps 
                 1 main compartment with double zipper 
@@ -81,6 +79,7 @@ def example():
     """
     topics = run(description_product)
     save_csv(topics, "products_classes")
+
 
 if __name__ == "__main__":
     example()

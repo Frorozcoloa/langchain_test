@@ -12,12 +12,11 @@ from langchain.prompts.chat import (
 from config import codegpt_api_key, code_gpt_agent_id, codegpt_api_base
 from utils import text2json, save_csv
 
-def get_tamplate()-> ChatPromptTemplate:
+
+def get_tamplate() -> ChatPromptTemplate:
     """Returns a ChatPromptTemplate object with the following template"""
 
-    template = (
-        "You are a helpful assistant. Your task is to analyze the users of an ecommerce."
-    )
+    template = "You are a helpful assistant. Your task is to analyze the users of an ecommerce."
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
     human_template = """
         Please, identify the main topics mentioned in these users profile. 
@@ -39,7 +38,7 @@ def get_tamplate()-> ChatPromptTemplate:
     return chat_prompt
 
 
-def get_model()-> ChatOpenAI:
+def get_model() -> ChatOpenAI:
     # Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
     llm = ChatOpenAI(
         openai_api_key=codegpt_api_key,
@@ -48,20 +47,18 @@ def get_model()-> ChatOpenAI:
     )
     return llm
 
+
 # Create a list of messages to send to the ChatOpenAI object
 
-def run(text:str)->List[Dict]:
+
+def run(text: str) -> List[Dict]:
     """Returns a list of topics, given a description of a product"""
     llm = get_model()
     chat_prompt = get_tamplate()
-    messages = chat_prompt.format_prompt(
-        users_profile=text
-    )
+    messages = chat_prompt.format_prompt(users_profile=text)
     response = llm(messages.to_messages())
     list_desc = text2json(response.content)
     return list_desc
-
-
 
 
 def example():
