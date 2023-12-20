@@ -38,23 +38,26 @@ prompt_summary = PromptTemplate(template=template_summary, input_variables=["new
 prompt_topic = PromptTemplate(template=template, input_variables=["news"])
 llm = ChatOpenAI(
     openai_api_key=os.getenv("CODEGPT_API_KEY"),
-    openai_api_base=os.getenv("CODEGPT_API_BASE"), 
-    model=os.getenv("CODEGPT_AGENT_ID"))
+    openai_api_base=os.getenv("CODEGPT_API_BASE"),
+    model=os.getenv("CODEGPT_AGENT_ID"),
+)
 
 llm_summary = LLMChain(prompt=prompt_summary, llm=llm)
 llm_topic = LLMChain(prompt=prompt_topic, llm=llm)
 
-def get_articles_trends(query : str =  "Sports market trends", num_results: int = 50):
+
+def get_articles_trends(query: str = "Sports market trends", num_results: int = 50):
     list_text = []
-    for url in search(query,num_results=num_results):
+    for url in search(query, num_results=num_results):
         article = Article(url)
         article.download()
         article.parse()
-        doc = Document(page_content=article.text,  metadata={"source": url})
+        doc = Document(page_content=article.text, metadata={"source": url})
         list_text.append(doc)
     return list_text
 
-def get_analysis_trends(list_docs : list):
+
+def get_analysis_trends(list_docs: list):
     combine_documents_chain = StuffDocumentsChain(
         llm_chain=llm_summary, document_variable_name="docs"
     )
@@ -82,8 +85,9 @@ def get_analysis_trends(list_docs : list):
     split_docs = text_splitter.split_documents(list_docs)
     text_summary = map_reduce_chain.run(split_docs)
     raw_topics = llm_topic.run(text_summary)
-    topics_raw = json.loads(raw_topics.replace("```","").replace("json", ""))
+    topics_raw = json.loads(raw_topics.replace("```", "").replace("json", ""))
     return topics_raw
+
 
 def main():
     list_text = get_articles_trends()
@@ -91,6 +95,7 @@ def main():
     df = pd.DataFrame.from_dict(analysis)
     print(df.head())
     df.to_csv("trends.csv")
+
 
 if __name__ == "__main__":
     main()
