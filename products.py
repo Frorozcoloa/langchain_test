@@ -1,4 +1,3 @@
-# Import necessary libraries
 from typing import List, Dict
 from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI

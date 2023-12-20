@@ -22,7 +22,7 @@ def get_template() -> List[PromptTemplate]:
         """Returns a PromptTemplate object with the following template:"""
         template = """
         Given the following docs about a sports e-commerce, conduct an analysis of potential future trends.
-        return a list of 25-50 topics.
+        return a list of 10 topics.
         Output is a JSON list with the following format
         [
             {{"product_decription": "<product_decription>", "product_to_sell": "<product_to_sell1>"}},}}, 

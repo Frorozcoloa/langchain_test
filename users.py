@@ -1,4 +1,3 @@
-# Import necessary librariesv
 from typing import List, Dict
 from langchain.chat_models import ChatOpenAI
 import json
