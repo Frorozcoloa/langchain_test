@@ -53,7 +53,7 @@ def get_model()-> ChatOpenAI:
     return llm
     
 
-def get_topics(customer_reviews: str)->List[Dict]:
+def run(customer_reviews: str)->List[Dict]:
     """Returns a list of topics, given a description of a product"""
     llm = get_model()
     chat_prompt = get_tamplate()
@@ -79,7 +79,7 @@ def example():
                 EASE OF USE
                 Easy access to the external pocket by placing the backpack in a horizontal position while hiking.
     """
-    topics = get_topics(description_product)
+    topics = run(description_product)
     save_csv(topics, "products_classes")
 
 if __name__ == "__main__":

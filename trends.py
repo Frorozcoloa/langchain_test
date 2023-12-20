@@ -2,7 +2,6 @@ from googlesearch import search
 from newspaper import Article
 import json
 import os
-from dotenv import load_dotenv
 import pandas as pd
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
@@ -12,7 +11,13 @@ from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.docstore.document import Document
 
-load_dotenv()
+
+from config import codegpt_api_key, code_gpt_agent_id, codegpt_api_base
+from utils import text2json, save_csv
+
+
+
+    
 
 template = """
 Given the following docs about a sports e-commerce, conduct an analysis of potential future trends.
