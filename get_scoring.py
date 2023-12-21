@@ -1,7 +1,10 @@
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
 from typing import Dict, List, Tuple
-from segtok.segmenter import split_single
+
+from utils import save_csv
+
+
 
 
 def get_model():
@@ -49,7 +52,8 @@ def get_score_trends(model, trends: pd.DataFrame, user: pd.DataFrame, products: 
     
     score = st_person_producto + sd_person_producto
     user["score"] = score
-    print(user.sort_values(by="score", ascending=False))
+    user = user.sort_values(by="score", ascending=False)
+    save_csv(user, "user_score")
 
 if __name__ == "__main__":
     model = get_model()
