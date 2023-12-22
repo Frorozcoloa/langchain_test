@@ -1,5 +1,46 @@
 # Prueba técnica
 
+```
+└── 📁datasets_output
+    └── Anaslysis_social_meida.csv.csv
+    └── products_TOPIC.csv
+    └── trends.csv
+    └── users_description.csv
+    └── user_score.csv
+└── 📁feedback
+    └── 1234451.txt
+    └── trending_products.csv
+└── 📁images
+    └── 📁user_1
+        └── Beneficios-videojuegos-socializacion-1080x608-379831960.jpg
+        └── ciclomontanismo-2235210643.jpg
+    └── 📁user_2
+        └── dia-noche-de-velitas-en-colombia-shutterstock_1215902506-925358444.jpg
+        └── empezar-a-practicar-senderismo-522102831.jpg
+        └── noche-de-chicas-4089298781.jpg
+└── 📁products
+    └── product_1.txt
+    └── product_2.txt
+└── .env
+└── .gitignore
+└── config.py
+└── get_scoring.py
+└── OAI_CONFIG_LIST.json
+└── product.json
+└── requirements.txt
+└── reviewer_agent.py
+└── social_media.py
+└── trends.py
+└── users.py
+└── utils.py
+```
+
+La carpeta `datasets_output` es donde se guardan los .csv outputs de los agentes.
+
+La carpeta `feedback` es donde actua los agentes del chat y guardan los archivos
+
+La carpeta `images` es donde
+
 ## ***Agentes de Usuario:***
 
 El agente de usuario se encuentra implementado en el archivo `users.py`. En este momento, el agente tiene la responsabilidad de recibir una descripción del usuario y devolver un JSON con los topics detectados en el archivo. A continuación, se presenta un ejemplo de entrada para el modelo:
@@ -260,3 +301,9 @@ Para abordar el flujo de identificar perfiles similares, proponemos un enfoque e
 Este enfoque nos permite aprovechar tanto la información textual como visual de los comentarios e imágenes. Al convertir la información de las imágenes a texto, creamos perfiles más ricos y completos. Se creo un prompt con langchain para encontrar la similitud compartida por los usuarios. Se puede procesar más información, audio, video y texto para sacar más información para este ejemplo usamos unas imagenes guardas en la carperta images y dividida por los usuarios
 
 ## ***Seguridad y Privacidad***
+
+Para garantizar la seguridad y privacidad de las personas, existen dos enfoques viables. El primero implica realizar consultas directas a la base de datos relacional, permitiendo modificar información sensible como nombres y otros detalles. Sin embargo, esta estrategia puede volverse compleja, especialmente cuando se trata de grandes conjuntos de datos.
+
+La segunda alternativa, que resulta más eficiente para nuestro ejemplo, es utilizar agentes con modelos de código abierto. Estos agentes pueden procesar y anonimizar la información de manera automática, eliminando nombres, identificaciones, cédulas, y otros datos sensibles. Antes de considerar el uso de modelos de pago u otros recursos, se recomienda pasar por estos modelos de código abierto para salvaguardar la privacidad de los individuos.
+
+Este enfoque no solo simplifica el proceso, sino que también asegura un tratamiento seguro y ético de la información. La prioridad es preservar la privacidad de los usuarios al tiempo que se aprovechan herramientas de código abierto para garantizar la eficacia y la integridad del proceso de anonimización de datos.
