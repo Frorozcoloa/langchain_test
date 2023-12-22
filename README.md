@@ -27,31 +27,29 @@ El prompt utilizado para el sistema es el siguiente:
 
 > `You are a helpful assistant. Your task is to analyze the users of an ecommerce.`
 
-
 Este prompt fue creado mediante la conversación en CodeGPT para establecer una nomenclatura coherente.
 
 Además, el siguiente prompt se utiliza para extraer los tópicos a partir de los perfiles de usuarios:
 
->
 > Please, identify the main topics mentioned in these users profile.
 >
->     Return a list of 3-5 topics.
+> Return a list of 3-5 topics.
 >
->     Output is a JSON list with the following format
+> Output is a JSON list with the following format
 >
->     [
+> [
 >
->     {{"topic_name": "`<topic1>`", "topic_description": "<topic_description1>"}},
+> {{"topic_name": "`<topic1>`", "topic_description": "<topic_description1>"}},
 >
->     {{"topic_name": "`<topic2>`", "topic_description": "<topic_description2>"}},
+> {{"topic_name": "`<topic2>`", "topic_description": "<topic_description2>"}},
 >
->     ...
+> ...
 >
->     ]
+> ]
 >
->     Users profile:
+> Users profile:
 >
->     {users_profile}
+> {users_profile}
 
 Estos son los prompts específicos utilizados en conjunto con el sistema.
 
@@ -86,7 +84,6 @@ Simple to use backrest
 EASE OF USE
 Easy access to the external pocket by placing the backpack in a horizontal position while hiking.
 ```
-
 
 ### **Tópicos Generados por el Agente de Productos:**
 
@@ -125,7 +122,6 @@ python prodcut.py
 ```
 
 ## ***Agentes de Análisis de Tendencias:***
-
 
 El agente encargado del análisis de tendencias es uno de mis favoritos. Su desarrollo comienza con la búsqueda de las 100 primeras páginas web en Google, seguida por un proceso de web scraping en el que se recopilan datos. Todos estos datos obtenidos se almacenan en el objeto "documentos" de Langchain y se envían para su resumen mediante la técnica de MapReduce. Posteriormente, se extraen los tópicos para comprender las tendencias y los temas de actualidad en Internet.
 
@@ -172,7 +168,6 @@ python trends.py
 
 ## Algoritmo de scoring
 
-
 **Algoritmo de Scoring: Comparación de Tópicos de Productos y Tendencias**
 
 Para calcular el puntaje, se utiliza la similitud del coseno entre dos palabras. En este contexto, el proceso inicia comparando los tópicos del producto con las tendencias, siguiendo estas combinaciones:
@@ -218,7 +213,6 @@ python get_scoring.py
 
 ## ***Agentes de Retroalimentación:***
 
-
 Para desarrollar el siguiente agente, empleamos la librería "autogen", haciendo uso de diferentes agentes especializados:
 
 1. **Data Analyst (Analista de Datos):** Este agente se encarga de analizar el perfil del usuario y realizar modificaciones según los cambios propuestos. Su función principal es asegurar que el perfil del usuario se adapte de manera óptima a las necesidades y preferencias actuales.
@@ -263,6 +257,6 @@ Para abordar el flujo de identificar perfiles similares, proponemos un enfoque e
    * Utilizamos técnicas como la similitud del coseno para comparar los perfiles y encontrar similitudes.
    * Implementamos un pipeline end-to-end que integra GPT-4 para analizar y encontrar patrones comunes en los perfiles.
 
-Este enfoque nos permite aprovechar tanto la información textual como visual de los comentarios e imágenes. Al convertir la información de las imágenes a texto, creamos perfiles más ricos y completos. La búsqueda de similitudes se realiza mediante técnicas de procesamiento de lenguaje natural y modelos avanzados como GPT-4, lo que nos proporciona un análisis más profundo y detallado de los perfiles.
+Este enfoque nos permite aprovechar tanto la información textual como visual de los comentarios e imágenes. Al convertir la información de las imágenes a texto, creamos perfiles más ricos y completos. Se creo un prompt con langchain para encontrar la similitud compartida por los usuarios. Se puede procesar más información, audio, video y texto para sacar más información para este ejemplo usamos unas imagenes guardas en la carperta images y dividida por los usuarios
 
-El uso de la similitud del coseno y la incorporación de GPT-4 en un pipeline end-to-end potencian la capacidad del sistema para identificar patrones y conexiones entre los perfiles, ofreciendo una visión más completa y precisa de las similitudes entre las personas en función de sus perfiles. Este enfoque integral permite un análisis exhaustivo y eficiente de los perfiles similares en el contexto dado.
+## ***Seguridad y Privacidad***
