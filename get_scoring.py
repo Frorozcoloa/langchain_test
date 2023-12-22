@@ -12,9 +12,9 @@ def get_model():
     return model
 
 def get_data()->Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    trends  = pd.read_csv("trends.csv")
-    user = pd.read_csv("users_description.csv")
-    products = pd.read_csv("products_TOPIC.csv")
+    trends  = pd.read_csv("datasets_output/trends.csv")
+    user = pd.read_csv("datasets_output/users_description.csv")
+    products = pd.read_csv("datasets_output/products_TOPIC.csv")
     return trends, user, products
 
 def scoring_calculated(model, serie_main, serie_compare)->Dict:
@@ -37,8 +37,10 @@ def get_score_trends(model, trends: pd.DataFrame, user: pd.DataFrame, products: 
     # Scoring title
     st_trends_producto = scoring_calculated(model, title_product, title_trends)
     sd_trends_producto = scoring_calculated(model, description_product, description_trends)
+    std_trends_producto = scoring_calculated(model, title_product, description_trends)
+    std_trends_producto = scoring_calculated(model, description_product, title_trends)
     
-    score = st_trends_producto + sd_trends_producto
+    score = st_trends_producto + sd_trends_producto + std_trends_producto + std_trends_producto
     products["score"] = score
     print(products.sort_values(by="score", ascending=False))
     
@@ -47,10 +49,13 @@ def get_score_trends(model, trends: pd.DataFrame, user: pd.DataFrame, products: 
     description_user = user["topic_description"]
     filter_title_user = products[products["score"] > 0.2]["type_classes"]
     filter_description_user = products[products["score"] > 0.2]["class_description"]
+    
     st_person_producto = scoring_calculated(model, title_user, filter_title_user)
     sd_person_producto = scoring_calculated(model, description_user,filter_description_user)
+    std_person_producto = scoring_calculated(model, title_user, filter_description_user)
+    std_person_producto = scoring_calculated(model, description_user, filter_title_user)
     
-    score = st_person_producto + sd_person_producto
+    score = st_person_producto + sd_person_producto + std_person_producto + std_person_producto
     user["score"] = score
     user = user.sort_values(by="score", ascending=False)
     save_csv(user, "user_score")
