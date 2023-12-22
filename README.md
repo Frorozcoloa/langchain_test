@@ -20,7 +20,6 @@
         └── noche-de-chicas-4089298781.jpg
 └── 📁products
     └── product_1.txt
-    └── product_2.txt
 └── .env
 └── .gitignore
 └── config.py
@@ -39,7 +38,48 @@ La carpeta `datasets_output` es donde se guardan los .csv outputs de los agentes
 
 La carpeta `feedback` es donde actua los agentes del chat y guardan los archivos
 
-La carpeta `images` es donde
+La carpeta `images` es donde se tienen algunas images descargadas de internet
+
+La carpeta `prodcuts` se tirne una descripción de los ejercicios.
+
+El resto de los archivos son lo .py donde están los agantes y el prompt a usar.
+
+### Creación de archivos
+
+#### .env
+
+En el punto .env deben ir las siguiente variables
+
+```
+CODEGPT_API_KEY=CODEGPT_API_KEY
+CODEGPT_AGENT_ID=CODEGPT_AGENT_ID
+CODEGPT_API_BASE="https://api.codegpt.co/v1"
+OPENAI_API_KEY=OPENAI_API_KEY
+```
+
+#### OAI_CONFIG_LIST
+
+Aquí es donde se trabaja con los archivos que se van a usar en el autogen.
+
+```
+[
+    {
+        "model": ",agent_id",
+        "base_url": "https://api.codegpt.co/v1",
+        "api_key": "apui_key"
+    }
+
+```
+
+### ***Instalación de dependecias***
+
+Primero crear en virtualenv y luego:
+
+```
+pip install requirements.txt
+```
+
+Podemos utilizar docker para que cargue la imagen y hacer un pipeline CI/CD
 
 ## ***Agentes de Usuario:***
 
